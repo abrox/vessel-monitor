@@ -13,12 +13,11 @@ TEMPLATE = app
 
 
 SOURCES +=\
-        mainwindow.cpp \
     batteryMonitor.cpp \
     cockpitgrid.cpp \
     voltagemeter.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     cockpitgrid.h \
     voltagemeter.h
 
