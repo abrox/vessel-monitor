@@ -14,6 +14,14 @@ TEMPLATE = app
 
 SOURCES +=\
         mainwindow.cpp \
-    batteryMonitor.cpp
+    batteryMonitor.cpp \
+    cockpitgrid.cpp \
+    voltagemeter.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    cockpitgrid.h \
+    voltagemeter.h
+
+INCLUDEPATH +=~/src/simplemqttclient/src
+LIBS += -lpaho-mqtt3c
+LIBS += -L ~/src/simplemqttclient/lib -lsmqtt

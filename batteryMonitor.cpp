@@ -1,11 +1,21 @@
-#include "mainwindow.h"
-#include <QApplication>
+#include <qapplication.h>
+#include <qtabwidget.h>
+#include "cockpitgrid.h"
 
-int main(int argc, char *argv[])
+//-----------------------------------------------------------------
+//
+//      dials.cpp -- A demo program featuring QwtDial and friends
+//
+//-----------------------------------------------------------------
+
+int main ( int argc, char **argv )
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    QApplication a( argc, argv );
+
+    QTabWidget tabWidget;
+    tabWidget.addTab( new CockpitGrid, "Cockpit" );
+
+    tabWidget.show();
 
     return a.exec();
 }
