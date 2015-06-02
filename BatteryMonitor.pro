@@ -15,12 +15,14 @@ TEMPLATE = app
 SOURCES +=\
     batteryMonitor.cpp \
     cockpitgrid.cpp \
-    voltagemeter.cpp
+    voltagemeter.cpp \
+    batterydata.cpp
 
 HEADERS  += \
     cockpitgrid.h \
-    voltagemeter.h
-
-INCLUDEPATH +=~/src/simplemqttclient/src
+    voltagemeter.h \
+    batterydata.h
+#TBD install these to system:
+INCLUDEPATH += /home/finjus/src/simplemqttclient/src
+LIBS += -L/home/finjus/src/simplemqttclient/lib -lsmqtt
 LIBS += -lpaho-mqtt3c
-LIBS += -L ~/src/simplemqttclient/lib -lsmqtt

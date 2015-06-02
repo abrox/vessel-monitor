@@ -1,6 +1,7 @@
 #include "batterydata.h"
 
-BatteryData::BatteryData(QObject *parent) : QObject(parent)
+BatteryData::BatteryData(QObject *parent) : QObject(parent),
+                                            SimpleMqttClient("localhost","dummy")
 {
 
 }
