@@ -8,8 +8,10 @@ class BatteryData : public QObject, public SimpleMqttClient
 {
     Q_OBJECT
 public:
-    explicit BatteryData(QObject *parent = 0);
+    explicit BatteryData(QObject *parent = 0, const char* addr="localhost");
     ~BatteryData();
+    int start();
+    void stop();
 
 //signals:
 

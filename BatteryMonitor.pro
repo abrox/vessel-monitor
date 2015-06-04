@@ -22,7 +22,11 @@ HEADERS  += \
     cockpitgrid.h \
     voltagemeter.h \
     batterydata.h
+DEFINES += QT_MESSAGELOGCONTEXT
+
 #TBD install these to system:
 INCLUDEPATH += /home/finjus/src/simplemqttclient/src
 LIBS += -L/home/finjus/src/simplemqttclient/lib -lsmqtt
 LIBS += -lpaho-mqtt3c
+
+
