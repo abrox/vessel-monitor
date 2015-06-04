@@ -44,6 +44,14 @@ int main ( int argc, char **argv )
     int rc =-1;
     try{
         BatteryData bd;
+        QTabWidget  tabWidget;
+        CockpitGrid *cp = new CockpitGrid;
+
+
+        QObject::connect(&bd, &BatteryData::updateBatteryVoltage,
+                          cp, &CockpitGrid::batteryVoltageUpdated);
+
+        tabWidget.addTab( cp, "Cockpit" );
 
         rc = bd.start();
         if( rc )
@@ -51,8 +59,6 @@ int main ( int argc, char **argv )
             return -1;
         }
 
-        QTabWidget tabWidget;
-        tabWidget.addTab( new CockpitGrid, "Cockpit" );
 
         tabWidget.show();
         rc = a.exec();

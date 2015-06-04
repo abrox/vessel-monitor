@@ -36,14 +36,9 @@ QwtDial *CockpitGrid::createDial( int pos )
         case 0:
         {
             d_voltage = new VoltageMeter( this );
-            d_voltage->setScaleStepSize( 20.0 );
-            d_voltage->setScale( -120.0, 120.0 );
+            d_voltage->setScaleStepSize( 2.0 );
+            d_voltage->setScale( 8.0, 16.0 );
             d_voltage->scaleDraw()->setPenWidth( 2 );
-
-            QTimer *timer = new QTimer( d_voltage );
-            timer->connect( timer, SIGNAL( timeout() ),
-                this, SLOT( changeSpeed() ) );
-            timer->start( 50 );
 
             dial = d_voltage;
             break;
@@ -78,29 +73,9 @@ QPalette CockpitGrid::colorTheme( const QColor &base ) const
     return palette;
 }
 
-void CockpitGrid::changeSpeed()
+void CockpitGrid::batteryVoltageUpdated( double val )
 {
-    static double offset = 0.8;
-
-    double speed = d_voltage->value();
-
-    if ( ( speed < -110.0 && offset < 0.0 ) ||
-        ( speed > 110.0 && offset > 0.0 ) )
-    {
-        offset = -offset;
-    }
-
-    static int counter = 0;
-    switch( counter++ % 12 )
-    {
-        case 0:
-        case 2:
-        case 7:
-        case 8:
-            break;
-        default:
-            d_voltage->setValue( speed + offset );
-    }
+    d_voltage->setValue( val );
 }
 
 

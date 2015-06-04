@@ -15,8 +15,8 @@ class CockpitGrid: public QFrame
 public:
     CockpitGrid( QWidget *parent = NULL );
 
-private Q_SLOTS:
-    void changeSpeed();
+public Q_SLOTS:
+    void batteryVoltageUpdated( double val );
 
 
 private:

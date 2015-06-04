@@ -1,21 +1,33 @@
 #ifndef BATTERYDATA_H
 #define BATTERYDATA_H
-#include "simplemqttclient.h"
+
 #include <QObject>
+
+#include "simplemqttclient.h"
 
 
 class BatteryData : public QObject, public SimpleMqttClient
 {
     Q_OBJECT
+
+
 public:
     explicit BatteryData(QObject *parent = 0, const char* addr="localhost");
     ~BatteryData();
     int start();
     void stop();
 
-//signals:
+    /// Overide from SimpleMqttClient.
+    int handleStringMsgArrvd(std::string & topic,
+                                     std::string & data
+                                     );
 
-//public slots:
+
+    /// Overide from SimpleMqttClient.
+    void handleConnectionLost(char * cause);
+
+Q_SIGNALS:
+            void updateBatteryVoltage(double val);
 };
 
 #endif // BATTERYDATA_H
