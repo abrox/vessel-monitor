@@ -21,7 +21,8 @@ SOURCES +=\
 HEADERS  += \
     cockpitgrid.h \
     voltagemeter.h \
-    batterydata.h
+    batterydata.h \
+    utils.h
 DEFINES += QT_MESSAGELOGCONTEXT
 
 #TBD install these to system:
