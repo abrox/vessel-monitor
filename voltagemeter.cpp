@@ -8,7 +8,7 @@
 
 VoltageMeter::VoltageMeter( QWidget *parent ):
     QwtDial( parent ),
-    d_label( "km/h" )
+    d_label( "Volt" )
 {
     QwtRoundScaleDraw *scaleDraw = new QwtRoundScaleDraw();
     scaleDraw->setSpacing( 8 );

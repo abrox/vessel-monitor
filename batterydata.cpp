@@ -2,6 +2,9 @@
 #include "batterydata.h"
 #include "utils.h"
 
+const std::string voltTopic("battery/voltage");
+const std::string currentTopic("battery/current");
+
 BatteryData::BatteryData(QObject *parent,const char* addr) : QObject(parent),
                                             SimpleMqttClient(addr,"dummy")
 {
@@ -21,8 +24,8 @@ int BatteryData::start()
 
     if( !rc )
     {
-        rc = subscribeFromMqttServer("battery/voltage");
-        rc = subscribeFromMqttServer("battery/current");
+        rc = subscribeFromMqttServer(voltTopic);
+        rc = subscribeFromMqttServer(currentTopic);
     }
     else
        qCritical() <<"connect to mqtt server fails rc:" << rc;
@@ -38,14 +41,26 @@ void BatteryData::stop()
 
 int BatteryData::handleStringMsgArrvd(std::string & topic, std::string & data)
 {
-    double val = stringToNumber<double>(data);
+    try{
+        double val = stringToNumber<double>(data);
 
-    Q_EMIT updateBatteryVoltage(val);
+        if( topic == voltTopic )
+            Q_EMIT updateBatteryVoltage(val);
+        else
+        if( topic ==  currentTopic )
+            Q_EMIT updateBatteryCurrent(val);
+        else
+            qWarning("Unknown topic: %s",topic.c_str());
+
+    }catch(std::runtime_error e){
+        qWarning("Topic: %s invalid value: %s",topic.c_str(),e.what());
+    }
 
     return 1;
 }
 
 void BatteryData::handleConnectionLost(char * cause)
 {
+
 }
 

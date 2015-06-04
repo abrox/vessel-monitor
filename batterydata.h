@@ -28,6 +28,7 @@ public:
 
 Q_SIGNALS:
             void updateBatteryVoltage(double val);
+            void updateBatteryCurrent(double val);
 };
 
 #endif // BATTERYDATA_H

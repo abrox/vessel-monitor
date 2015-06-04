@@ -4,6 +4,7 @@
 #include <qtimer.h>
 #include <qwt_round_scale_draw.h>
 #include "voltagemeter.h"
+#include "currentmeter.h"
 #include "cockpitgrid.h"
 
 CockpitGrid::CockpitGrid( QWidget *parent ):
@@ -45,6 +46,12 @@ QwtDial *CockpitGrid::createDial( int pos )
         }
         case 1:
         {
+            d_current = new CurrentMeter( this );
+            d_current->setScaleStepSize( 2.0 );
+            d_current->setScale( -6.0, 6.0 );
+            d_current->scaleDraw()->setPenWidth( 2 );
+
+            dial = d_current;
             break;
         }
 
@@ -77,7 +84,10 @@ void CockpitGrid::batteryVoltageUpdated( double val )
 {
     d_voltage->setValue( val );
 }
-
+void CockpitGrid::batteryCurrentUpdated( double val )
+{
+    d_current->setValue( val );
+}
 
 
 

@@ -51,6 +51,9 @@ int main ( int argc, char **argv )
         QObject::connect(&bd, &BatteryData::updateBatteryVoltage,
                           cp, &CockpitGrid::batteryVoltageUpdated);
 
+        QObject::connect(&bd, &BatteryData::updateBatteryCurrent,
+                          cp, &CockpitGrid::batteryCurrentUpdated);
+
         tabWidget.addTab( cp, "Cockpit" );
 
         rc = bd.start();
