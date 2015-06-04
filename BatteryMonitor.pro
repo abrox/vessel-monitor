@@ -16,13 +16,15 @@ SOURCES +=\
     batteryMonitor.cpp \
     cockpitgrid.cpp \
     voltagemeter.cpp \
-    batterydata.cpp
+    batterydata.cpp \
+    currentmeter.cpp
 
 HEADERS  += \
     cockpitgrid.h \
     voltagemeter.h \
     batterydata.h \
-    utils.h
+    utils.h \
+    currentmeter.h
 DEFINES += QT_MESSAGELOGCONTEXT
 
 #TBD install these to system:
