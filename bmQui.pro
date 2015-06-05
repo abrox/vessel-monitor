@@ -8,12 +8,12 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = BatteryMonitor
+TARGET = bmGui
 TEMPLATE = app
 
 
 SOURCES +=\
-    batteryMonitor.cpp \
+    bmgui.cpp \
     cockpitgrid.cpp \
     voltagemeter.cpp \
     batterydata.cpp \
