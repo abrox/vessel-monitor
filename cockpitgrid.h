@@ -4,6 +4,7 @@
 
 #include <qframe.h>
 #include <qpalette.h>
+#include <qlabel.h>
 
 class QwtDial;
 class VoltageMeter;
@@ -23,9 +24,13 @@ public Q_SLOTS:
 private:
     QPalette colorTheme( const QColor & ) const;
     QwtDial *createDial( int pos );
+    QLabel *createLabel( int pos );
 
     VoltageMeter *d_voltage;
     CurrentMeter *d_current;
+
+    QLabel *l_voltage;
+    QLabel *l_current;
 };
 
 #endif // COCKPITGRID_H
