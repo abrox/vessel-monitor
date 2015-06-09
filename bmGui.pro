@@ -27,9 +27,7 @@ HEADERS  += \
     currentmeter.h
 DEFINES += QT_MESSAGELOGCONTEXT
 
-#TBD install these to system:
-INCLUDEPATH += /home/odroid/src/simplemqtt/src
-LIBS += -lsmqtt
+LIBS +=-L/usr/local/lib -lsmqtt
 LIBS += -lpaho-mqtt3c
 
 

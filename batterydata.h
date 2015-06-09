@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "simplemqttclient.h"
+#include <smqtt/simplemqttclient.h>
 
 
 class BatteryData : public QObject, public SimpleMqttClient
