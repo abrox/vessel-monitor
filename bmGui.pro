@@ -17,14 +17,16 @@ SOURCES +=\
     cockpitgrid.cpp \
     voltagemeter.cpp \
     batterydata.cpp \
-    currentmeter.cpp
+    currentmeter.cpp \
+    graphview.cpp
 
 HEADERS  += \
     cockpitgrid.h \
     voltagemeter.h \
     batterydata.h \
     utils.h \
-    currentmeter.h
+    currentmeter.h \
+    graphview.h
 DEFINES += QT_MESSAGELOGCONTEXT
 
 LIBS +=-L/usr/local/lib -lsmqtt

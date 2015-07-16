@@ -1,6 +1,6 @@
 #include "graphview.h"
 
-GraphView::GraphView()
+GraphView::GraphView(QWidget *parent):QFrame( parent )
 {
 
 }
@@ -9,4 +9,14 @@ GraphView::~GraphView()
 {
 
 }
+
+void GraphView::batteryVoltageUpdated( double val )
+{
+    ;
+}
+void GraphView::batteryCurrentUpdated( double val )
+{
+   ;
+}
+
 

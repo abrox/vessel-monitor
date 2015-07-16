@@ -7,6 +7,8 @@
 
 #include "cockpitgrid.h"
 #include "batterydata.h"
+#include "graphview.h"
+
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -46,15 +48,21 @@ int main ( int argc, char **argv )
         BatteryData bd;
         QTabWidget  tabWidget;
         CockpitGrid *cp = new CockpitGrid;
-
+        GraphView   *gv = new GraphView;
 
         QObject::connect(&bd, &BatteryData::updateBatteryVoltage,
                           cp, &CockpitGrid::batteryVoltageUpdated);
 
+        QObject::connect(&bd, &BatteryData::updateBatteryVoltage,
+                          gv, &GraphView::batteryVoltageUpdated);
+
         QObject::connect(&bd, &BatteryData::updateBatteryCurrent,
                           cp, &CockpitGrid::batteryCurrentUpdated);
+        QObject::connect(&bd, &BatteryData::updateBatteryCurrent,
+                          gv, &GraphView::batteryCurrentUpdated);
 
         tabWidget.addTab( cp, "Cockpit" );
+        tabWidget.addTab( gv, "Graph" );
 
         rc = bd.start();
         if( rc )
