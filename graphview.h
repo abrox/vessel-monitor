@@ -20,6 +20,8 @@ protected:
     void timerEvent( QTimerEvent *e );
 private:
     BatteryPlot *plot;
+    double       dVoltage;
+    double       dCurrent;
 
 };
 

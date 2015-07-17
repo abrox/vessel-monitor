@@ -29,7 +29,8 @@ private:
     QTime baseTime;
 };
 
-BatteryPlot::BatteryPlot(QWidget *parent):QwtPlot( parent )
+BatteryPlot::BatteryPlot(QWidget *parent):
+    QwtPlot( parent ),dataCount( 0 )
 {
 
 
@@ -66,6 +67,21 @@ BatteryPlot::BatteryPlot(QWidget *parent):QwtPlot( parent )
     for ( int i = 0; i < HISTORY; i++ )
         timeData[HISTORY - 1 - i] = i;
 
+    QwtPlotCurve *curve;
+
+    curve = new QwtPlotCurve;
+    curve->setTitle("volt");
+    curve->setPen( Qt::red,2 );
+    curve->attach( this );
+    data[Voltage].curve = curve;
+
+    curve = new QwtPlotCurve;
+    curve->setTitle("Current");
+    curve->setPen( Qt::blue,2 );
+    curve->attach( this );
+    data[Current].curve = curve;
+    curve->setYAxis(QwtPlot::yRight);
+
 }
 
 BatteryPlot::~BatteryPlot()
@@ -75,11 +91,32 @@ BatteryPlot::~BatteryPlot()
 
 void BatteryPlot::handleOneSecTimer( double curVal,double voltVal)
 {
+    for ( int i = dataCount; i > 0; i-- )
+    {
+        for ( int c = 0; c < NBatteryData; c++ )
+        {
+            if ( i < HISTORY )
+                data[c].data[i] = data[c].data[i-1];
+        }
+    }
+
+    data[Voltage].data[0] = 9;//voltVal;
+    data[Current].data[0] = 4;//curVal;
+
+    if ( dataCount < HISTORY )
+        dataCount++;
+
     for ( int j = 0; j < HISTORY; j++ )
         timeData[j]++;
 
     setAxisScale( QwtPlot::xBottom,
         timeData[HISTORY - 1], timeData[0] );
+
+    for ( int c = 0; c < NBatteryData; c++ )
+    {
+        data[c].curve->setRawSamples(
+            timeData, data[c].data, dataCount );
+    }
 
     replot();
 }

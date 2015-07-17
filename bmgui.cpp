@@ -1,7 +1,8 @@
 #include <qapplication.h>
 #include <qtabwidget.h>
 #include <qstring.h>
-#include<stdexcept>
+#include <stdexcept>
+#include <iostream>
 
 #include <syslog.h>
 
@@ -30,10 +31,12 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
 
     QByteArray array = txt.toLocal8Bit();
 
+    std::cout << array.data() << std::endl;
+/*
     openlog("BatteryMonitor", LOG_PID|LOG_CONS, LOG_USER);
     syslog(LOG_INFO, "%s",array.data());
     closelog();
-
+*/
     if( type == QtFatalMsg )
         abort();
 }
@@ -52,9 +55,9 @@ int main ( int argc, char **argv )
 
         QObject::connect(&bd, &BatteryData::updateBatteryVoltage,
                           cp, &CockpitGrid::batteryVoltageUpdated);
-
         QObject::connect(&bd, &BatteryData::updateBatteryVoltage,
                           gv, &GraphView::batteryVoltageUpdated);
+
 
         QObject::connect(&bd, &BatteryData::updateBatteryCurrent,
                           cp, &CockpitGrid::batteryCurrentUpdated);
@@ -70,7 +73,7 @@ int main ( int argc, char **argv )
             return -1;
         }
 
-
+        tabWidget.resize(640,400);
         tabWidget.show();
         rc = a.exec();
         bd.stop();

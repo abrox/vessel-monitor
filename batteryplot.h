@@ -3,10 +3,20 @@
 
 #include <qwt_plot.h>
 
-const int HISTORY= 3600;
+const int HISTORY= 60;
+
+class QwtPlotCurve;
+
 class BatteryPlot : public QwtPlot
 {
     Q_OBJECT
+
+    enum BatteryData
+    {
+        Voltage=0,
+        Current=1,
+        NBatteryData
+    };
 public:
     BatteryPlot(QWidget *parent=NULL);
     ~BatteryPlot();
@@ -14,6 +24,12 @@ public:
 
 private:
     double timeData[HISTORY];
+    struct
+    {
+        QwtPlotCurve *curve;
+        double data[HISTORY];
+    } data[NBatteryData];
+    int dataCount;
 
 };
 
