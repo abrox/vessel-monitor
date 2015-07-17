@@ -2,8 +2,9 @@
 #define BATTERYPLOT_H
 
 #include <qwt_plot.h>
+#include <qwt_interval.h>
 
-const int HISTORY= 60;
+#include "const.h"
 
 class QwtPlotCurve;
 
@@ -17,6 +18,10 @@ class BatteryPlot : public QwtPlot
         Current=1,
         NBatteryData
     };
+
+public Q_SLOTS:
+    void setIntervalLength( double );
+
 public:
     BatteryPlot(QWidget *parent=NULL);
     ~BatteryPlot();
@@ -30,6 +35,7 @@ private:
         double data[HISTORY];
     } data[NBatteryData];
     int dataCount;
+    QwtInterval d_interval;
 
 };
 

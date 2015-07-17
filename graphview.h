@@ -4,7 +4,7 @@
 #include <qframe.h>
 
 class BatteryPlot;
-
+class WheelBox;
 class GraphView : public QFrame
 {
     Q_OBJECT
@@ -22,6 +22,7 @@ private:
     BatteryPlot *plot;
     double       dVoltage;
     double       dCurrent;
+    WheelBox     *d_intervalWheel;
 
 };
 

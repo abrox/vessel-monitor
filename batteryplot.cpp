@@ -1,7 +1,7 @@
 #include "batteryplot.h"
 
 #include <QTime>
-
+#include <qdebug.h>
 #include <qwt_plot_layout.h>
 #include <qwt_plot_curve.h>
 #include <qwt_scale_draw.h>
@@ -30,10 +30,8 @@ private:
 };
 
 BatteryPlot::BatteryPlot(QWidget *parent):
-    QwtPlot( parent ),dataCount( 0 )
+    QwtPlot( parent ),dataCount( 0 ),d_interval( 0.0, HISTORY )
 {
-
-
     setAutoReplot( false );
 
 //    QwtPlotCanvas *canvas = new QwtPlotCanvas();
@@ -49,10 +47,10 @@ BatteryPlot::BatteryPlot(QWidget *parent):
     setAxisTitle(QwtPlot::yLeft,"Volt");
     setAxisTitle(QwtPlot::yRight,"Amp");
     //setAxisTitle( QwtPlot::xBottom, " System Uptime [h:m:s]" );
-    insertLegend( new QwtLegend() );
+    insertLegend( new QwtLegend(),QwtPlot::TopLegend);
 
 
-    setAxisScale( QwtPlot::xBottom, 0, HISTORY );
+    setAxisScale( QwtPlot::xBottom, d_interval.minValue(), d_interval.maxValue() );
 
     setAxisLabelRotation( QwtPlot::xBottom, -50.0 );
     setAxisLabelAlignment( QwtPlot::xBottom, Qt::AlignLeft | Qt::AlignBottom );
@@ -100,8 +98,8 @@ void BatteryPlot::handleOneSecTimer( double curVal,double voltVal)
         }
     }
 
-    data[Voltage].data[0] = 9;//voltVal;
-    data[Current].data[0] = 4;//curVal;
+    data[Voltage].data[0] = voltVal;
+    data[Current].data[0] = curVal;
 
     if ( dataCount < HISTORY )
         dataCount++;
@@ -110,7 +108,7 @@ void BatteryPlot::handleOneSecTimer( double curVal,double voltVal)
         timeData[j]++;
 
     setAxisScale( QwtPlot::xBottom,
-        timeData[HISTORY - 1], timeData[0] );
+        timeData[static_cast<int>(d_interval.maxValue() ) - 1], timeData[0] );
 
     for ( int c = 0; c < NBatteryData; c++ )
     {
@@ -119,4 +117,18 @@ void BatteryPlot::handleOneSecTimer( double curVal,double voltVal)
     }
 
     replot();
+}
+
+void BatteryPlot::setIntervalLength( double interval )
+{
+    qDebug() << "setIntervalLength" << interval;
+
+    if ( interval > 0.0 && interval != d_interval.width() )
+    {
+        d_interval.setMaxValue( d_interval.minValue() + interval );
+        setAxisScale( QwtPlot::xBottom,
+            d_interval.minValue(), d_interval.maxValue() );
+
+        replot();
+    }
 }
