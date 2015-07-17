@@ -4,9 +4,11 @@
 #include <qtimer.h>
 #include <qlabel.h>
 #include <qwt_round_scale_draw.h>
+
 #include "voltagemeter.h"
 #include "currentmeter.h"
 #include "cockpitgrid.h"
+#include "const.h"
 
 CockpitGrid::CockpitGrid( QWidget *parent ):
     QFrame( parent )
@@ -42,7 +44,7 @@ QwtDial *CockpitGrid::createDial( int pos )
         {
             d_voltage = new VoltageMeter( this );
             d_voltage->setScaleStepSize( 2.0 );
-            d_voltage->setScale( 8.0, 16.0 );
+            d_voltage->setScale(VOLT_MIN, VOLT_MAX );
             d_voltage->scaleDraw()->setPenWidth( 2 );
 
             dial = d_voltage;
@@ -52,7 +54,7 @@ QwtDial *CockpitGrid::createDial( int pos )
         {
             d_current = new CurrentMeter( this );
             d_current->setScaleStepSize( 1.5 );
-            d_current->setScale( -3.0, 3.0 );
+            d_current->setScale( CUR_MIN, CUR_MAX);
             d_current->scaleDraw()->setPenWidth( 2 );
 
             dial = d_current;
