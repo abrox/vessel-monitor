@@ -19,8 +19,8 @@ SOURCES +=\
     batterydata.cpp \
     currentmeter.cpp \
     graphview.cpp \
-    batteryplot.cpp
-
+    batteryplot.cpp \
+    wheelbox.cpp
 HEADERS  += \
     cockpitgrid.h \
     voltagemeter.h \
@@ -29,7 +29,8 @@ HEADERS  += \
     currentmeter.h \
     graphview.h \
     batteryplot.h \
-    const.h
+    const.h\
+    wheelbox.h
 DEFINES += QT_MESSAGELOGCONTEXT
 
 LIBS +=-L/usr/local/lib -lsmqtt
