@@ -3,13 +3,14 @@
 
 #include <qwt_plot.h>
 
-const int HISTORY= 60;
+const int HISTORY= 3600;
 class BatteryPlot : public QwtPlot
 {
     Q_OBJECT
 public:
     BatteryPlot(QWidget *parent=NULL);
     ~BatteryPlot();
+    void handleOneSecTimer( double curVal,double voltVal);
 
 private:
     double timeData[HISTORY];
