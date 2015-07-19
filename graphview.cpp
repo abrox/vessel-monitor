@@ -2,6 +2,8 @@
 #include <qdebug.h>
 #include <qlayout.h>
 #include "const.h"
+#include "utils.h"
+
 #include "wheelbox.h"
 #include "batteryplot.h"
 
@@ -9,10 +11,14 @@ GraphView::GraphView(QWidget *parent):
     QFrame( parent ),dVoltage(0),dCurrent(0)
 {
     startTimer(1000);
+    setAutoFillBackground( true );
+
+
+    setPalette( colorTheme( QColor( Qt::darkGray ).dark( 150 ) ) );
     plot = new BatteryPlot;
 
-    d_intervalWheel = new WheelBox( "Displayed [s]", 1.0, HISTORY, 1.0, this );
-    d_intervalWheel->setValue( HISTORY );
+    d_intervalWheel = new WheelBox( "Displayed [s]", 10.0, HISTORY, 10.0, this );
+    d_intervalWheel->setValue( 60 );
 
     QGridLayout *layout = new QGridLayout( this );
     layout->setSpacing( 0);
