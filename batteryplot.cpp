@@ -63,19 +63,19 @@ BatteryPlot::BatteryPlot(QWidget *parent):
         new TimeScaleDraw( QTime(QTime::currentTime()) ) );
 
     for ( int i = 0; i < HISTORY; i++ )
-        timeData[HISTORY - 1 - i] = i;
+        timeData[i] = -abs(i);
 
     QwtPlotCurve *curve;
 
     curve = new QwtPlotCurve;
     curve->setTitle("volt");
-    curve->setPen( Qt::red,2 );
+    curve->setPen( Qt::red,1 );
     curve->attach( this );
     data[Voltage].curve = curve;
 
     curve = new QwtPlotCurve;
     curve->setTitle("Current");
-    curve->setPen( Qt::blue,2 );
+    curve->setPen( Qt::blue,1 );
     curve->attach( this );
     data[Current].curve = curve;
     curve->setYAxis(QwtPlot::yRight);
