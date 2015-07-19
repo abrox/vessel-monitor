@@ -7,7 +7,7 @@ const double VOLT_MIN = 8.0;
 const double CUR_MAX = 4.0;
 const double CUR_MIN = -4.0;
 
-const int HISTORY= 60;
+const int HISTORY= 7200;
 
 #endif // CONST_H
 
