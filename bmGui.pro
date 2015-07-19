@@ -20,7 +20,8 @@ SOURCES +=\
     currentmeter.cpp \
     graphview.cpp \
     batteryplot.cpp \
-    wheelbox.cpp
+    wheelbox.cpp \
+    utils.cpp
 HEADERS  += \
     cockpitgrid.h \
     voltagemeter.h \
