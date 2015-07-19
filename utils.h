@@ -5,6 +5,8 @@
 #include <sstream>
 #include <stdexcept>
 
+#include <QPalette>
+//#include <qlayout.h>
 
 /// Simple utility to convert strings to numbers
 /// copied from :
@@ -23,5 +25,11 @@ template<typename T>
       }
       return valor;
    }
+
+
+
+QPalette colorTheme( const QColor &base );
+
+
 #endif // UTILS_H
 

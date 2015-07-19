@@ -22,7 +22,6 @@ public Q_SLOTS:
     void batteryCurrentUpdated( double val );
 
 private:
-    QPalette colorTheme( const QColor & ) const;
     QwtDial *createDial( int pos );
     QLabel *createLabel( int pos );
 
