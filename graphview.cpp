@@ -19,6 +19,7 @@ GraphView::GraphView(QWidget *parent):
 
     d_intervalWheel = new WheelBox( "Displayed [s]", 10.0, HISTORY, 10.0, this );
     d_intervalWheel->setValue( 60 );
+    plot->setIntervalLength( d_intervalWheel->value() );
 
     QGridLayout *layout = new QGridLayout( this );
     layout->setSpacing( 0);
@@ -47,6 +48,5 @@ void GraphView::batteryCurrentUpdated( double val )
 
 void GraphView::timerEvent( QTimerEvent * )
 {
-    qDebug("Timer");
     plot->handleOneSecTimer(dCurrent,dVoltage);
 }
