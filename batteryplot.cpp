@@ -46,7 +46,6 @@ BatteryPlot::BatteryPlot(QWidget *parent):
     enableAxis(QwtPlot::yRight,true);
     setAxisTitle(QwtPlot::yLeft,"Volt");
     setAxisTitle(QwtPlot::yRight,"Amp");
-    //setAxisTitle( QwtPlot::xBottom, " System Uptime [h:m:s]" );
     insertLegend( new QwtLegend(),QwtPlot::TopLegend);
 
 
