@@ -34,10 +34,10 @@ BatteryPlot::BatteryPlot(QWidget *parent):
 {
     setAutoReplot( false );
 
-//    QwtPlotCanvas *canvas = new QwtPlotCanvas();
-   // canvas->setBorderRadius( 10 );
+    QwtPlotCanvas *canvas = new QwtPlotCanvas();
+    canvas->setBorderRadius( 10 );
 
-    //setCanvas( canvas );
+    setCanvas( canvas );
 
     plotLayout()->setAlignCanvasToScales( true );
     //plot.setCanvasBackground( Qt::white );
@@ -121,8 +121,6 @@ void BatteryPlot::handleOneSecTimer( double curVal,double voltVal)
 
 void BatteryPlot::setIntervalLength( double interval )
 {
-    qDebug() << "setIntervalLength" << interval;
-
     if ( interval > 0.0 && interval != d_interval.width() )
     {
         d_interval.setMaxValue( d_interval.minValue() + interval );
