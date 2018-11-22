@@ -3,7 +3,6 @@
 # Project created by QtCreator 2015-05-28T02:22:49
 #
 #-------------------------------------------------
-include( $${PWD}/../examples.pri )
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -37,4 +36,10 @@ DEFINES += QT_MESSAGELOGCONTEXT
 LIBS +=-L/usr/local/lib -lsmqtt
 LIBS += -lpaho-mqtt3c
 
+LIBS +=-L /usr/local/qwt-6.1.3/lib -lqwt
+
+INCLUDEPATH += /usr/local/qwt-6.1.3/include/
+
+DISTFILES += \
+    README.md
 
