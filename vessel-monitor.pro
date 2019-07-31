@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 QT       += core gui
+#CONFIG += PC_HOST
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -36,11 +37,17 @@ DEFINES += QT_MESSAGELOGCONTEXT
 LIBS += -lsmqtt
 LIBS += -lpaho-mqtt3c
 
-LIBS += -lqwt
+PC_HOST{
+  LIBS += -lqwt-qt5
+  INCLUDEPATH += /usr/include/qwt
+  target.path = /usr/local/bin
 
+}else{
+  LIBS += -lqwt
+  target.path = /usr/bin
+}
 
-#INCLUDEPATH += /usr/include/qwt
+INSTALLS += target
 
 DISTFILES += \
     README.md
-
