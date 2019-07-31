@@ -35,10 +35,10 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 LIBS +=-L/usr/local/lib -lsmqtt
 LIBS += -lpaho-mqtt3c
+LIBS += -lqwt-qt5
+#LIBS +=-L /usr/local/qwt-6.1.3/lib -lqwt
 
-LIBS +=-L /usr/local/qwt-6.1.3/lib -lqwt
-
-INCLUDEPATH += /usr/local/qwt-6.1.3/include/
+INCLUDEPATH += /usr/include/qwt
 
 DISTFILES += \
     README.md
