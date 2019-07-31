@@ -35,7 +35,7 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 LIBS += -lsmqtt
 LIBS += -lpaho-mqtt3c
-LIBS += -lqwt-qt5
+LIBS += -lqwt
 
 
 INCLUDEPATH += /usr/include/qwt
