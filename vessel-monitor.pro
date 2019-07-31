@@ -7,7 +7,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = bmGui
+TARGET = vessel-monitor
 TEMPLATE = app
 
 
@@ -35,6 +35,7 @@ DEFINES += QT_MESSAGELOGCONTEXT
 
 LIBS += -lsmqtt
 LIBS += -lpaho-mqtt3c
+
 LIBS += -lqwt
 
 
