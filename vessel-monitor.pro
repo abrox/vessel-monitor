@@ -39,7 +39,7 @@ LIBS += -lpaho-mqtt3c
 LIBS += -lqwt
 
 
-INCLUDEPATH += /usr/include/qwt
+#INCLUDEPATH += /usr/include/qwt
 
 DISTFILES += \
     README.md
