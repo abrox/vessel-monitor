@@ -5,7 +5,7 @@
 #-------------------------------------------------
 QT       += core gui
 #CONFIG += PC_HOST
-
+greaterThan(QT_MAJOR_VERSION, 4): cache
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = vessel-monitor
@@ -48,6 +48,12 @@ PC_HOST{
 }
 
 INSTALLS += target
+INCLUDEPATH += GeneratedFiles
+
+MOC_DIR = GeneratedFiles
+OBJECTS_DIR = Objects
+UI_DIR = GeneratedFiles
+RCC_DIR = GeneratedFiles
 
 DISTFILES += \
     README.md
